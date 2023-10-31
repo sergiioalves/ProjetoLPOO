@@ -9,7 +9,7 @@ public class Agendamento extends Servico{
 		super(nome_Servico, instrutor, matriculados);
 		this.data_Horario  = data_Horario;
 		this.tempo_Duracao = tempo_Duracao;
-	}//
+	}
 	
 	public LocalDateTime getdataHorario() {
 		return data_Horario;

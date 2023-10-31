@@ -8,7 +8,7 @@ public class Pessoa{
 	public Pessoa (String nome, int idade, char genero){
 		this.setNome(nome);
 		this.setIdade(idade);
-		this.setGenero(genero);//
+		this.setGenero(genero);
 	}
 
 	public String getNome() {

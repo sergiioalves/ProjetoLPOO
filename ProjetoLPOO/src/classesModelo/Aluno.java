@@ -1,7 +1,7 @@
 package classesModelo;
 
 public class Aluno extends Pessoa{
-	private String planoAssinatura;//tipo de plano: mensal, anual,etc...
+	private String planoAssinatura;
 	
 	public Aluno (String nome, int idade, char genero, String planoAssinatura) {
 		super(nome,idade,genero);
