@@ -10,7 +10,7 @@ public class Colaborador extends Pessoa{
 
 	public String getFuncao() {
 		return funcao;
-	}
+	}//
 
 	public void setFuncao(String funcao) {
 		this.funcao = funcao;

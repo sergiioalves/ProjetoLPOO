@@ -2,7 +2,7 @@ package classesModelo;
 import java.util.List;
 
 public class Servico{
-	private String nome_Servico;
+	private String nome_Servico;//Ex: musculacao, danca, etc
 	private Instrutor instrutor;
 	private List<Aluno> matriculados;
 	
