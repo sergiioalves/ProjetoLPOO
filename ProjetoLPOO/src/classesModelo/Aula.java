@@ -3,24 +3,26 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Aula{
-	private String descricao;//ex: ginástica, natação, dança
-	private LocalDateTime data_Horario;
+	private String tipo;//ex: ginástica, natação, dança
+	private String data;
+	private String horario;
 	private Instrutor instrutor;
 	
-	public Aula(String descricao, LocalDateTime data_Horario, Instrutor instrutor) {
-		this.descricao = descricao;
-		this.data_Horario = data_Horario;
+	public Aula(String tipo, String data, String horario, Instrutor instrutor) {
+		this.tipo = tipo;
+		this.data = data;
+		this.horario = horario;
 		this.instrutor = instrutor;
 	}
 
-	public LocalDateTime getData_Horario() {
-		return data_Horario;
+	public String getData() {
+		return data;
 	}
-
-	public void setData_Horario(LocalDateTime data_Horario) {
-		this.data_Horario = data_Horario;
+	
+	public String getHorario() {
+		return horario;
 	}
-
+	
 	public Instrutor getInstrutor() {
 		return instrutor;
 	}

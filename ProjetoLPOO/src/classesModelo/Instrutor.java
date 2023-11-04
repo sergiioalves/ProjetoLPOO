@@ -6,7 +6,7 @@ public class Instrutor extends Pessoa{
 	
 	public Instrutor (String nome, int idade, char genero, String especializacao, String id_Instrutor) {
 		super(nome,idade,genero);
-		this.setEspecializacao(especializacao);
+		this.especializacao = especializacao;
 		this.id_Instrutor = id_Instrutor;
 	}
 

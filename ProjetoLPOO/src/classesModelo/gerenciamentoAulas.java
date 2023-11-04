@@ -55,7 +55,7 @@ public class gerenciamentoAulas{
 	
 	public boolean verificarDisponibilidade (Aula aula) {
 		for (Aula auladata: aulasAgendadas) {
-			if (aula.getData_Horario().equals(auladata.getData_Horario()) && aula.getInstrutor().equals(auladata.getInstrutor())) {
+			if (aula.getHorario().equals(auladata.getHorario()) && aula.getInstrutor().equals(auladata.getInstrutor())) {
 				return false;
 			}
 		}return true;

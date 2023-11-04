@@ -42,5 +42,9 @@ public class Aluno extends Pessoa implements Agendament{
 	public boolean cancelarAula(Aula aula) {
 		return true;
 	};
+	
+	public String toString() {
+		return "Aluno(a): " + nome + "," + " Id: " + id_Aluno;
+	}
 
 }

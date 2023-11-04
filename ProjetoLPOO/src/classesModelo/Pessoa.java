@@ -1,7 +1,7 @@
 package classesModelo;
 
 public class Pessoa{
-	private String nome;
+	protected String nome;
 	private int idade;
 	private char genero;
 	
