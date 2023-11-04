@@ -15,6 +15,10 @@ public class Aula{
 		this.instrutor = instrutor;
 	}
 
+	public String getTipo() {
+		return tipo;
+	}
+	
 	public String getData() {
 		return data;
 	}
@@ -30,5 +34,14 @@ public class Aula{
 	public void setInstrutor(Instrutor instrutor) {
 		this.instrutor = instrutor;
 	}
+	public boolean atividadesemvagas() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public int get() {
+		// TODO Auto-generated method stub
+		return 0;
+	};
 }	
 	

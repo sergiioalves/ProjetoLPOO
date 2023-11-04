@@ -1,13 +1,17 @@
 package classesModelo;
 
-public class Aluno extends Pessoa implements Agendament{
+import java.util.List;
+
+public class Aluno extends Pessoa{
 	private String planoAssinatura;
 	private String id_Aluno;
+	private List<Aula> aulasAgendadas;
 	
-	public Aluno (String nome, int idade, char genero, String planoAssinatura, String id_Aluno) {
+	public Aluno (String nome, int idade, char genero, String planoAssinatura, String id_Aluno, List<Aula> aulasAgendadas) {
 		super(nome,idade,genero);
 		this.planoAssinatura = planoAssinatura;
 		this.id_Aluno = id_Aluno;
+		this.aulasAgendadas = aulasAgendadas;
 	}
 
 	public String getPlanoAssinatura() {
@@ -23,24 +27,22 @@ public class Aluno extends Pessoa implements Agendament{
 	}
 	
 	
-	public boolean agendarAula(Aula aula) {
-		if (atividadesemvagas(aula)) {
-			throw new IllegalArgumentException("Não há vagas para essa aula/atividade.");
-		}
-		else {
-			return true;
-		}
-		
-	};
-	
-	public boolean atividadesemvagas(Aula aula) {
-		// TODO Auto-generated method stub
-		return false;
-	};
+	public List<Aula> getAulasAgendadas() {
+        return aulasAgendadas;
+    }
+
+    public void agendarAula(Aula aula) {
+        aulasAgendadas.add(aula);
+    }
+
+//	public boolean atividadesemvagas(Aula aula) {
+//		// TODO Auto-generated method stub
+//		return true;
+//	};
 	
 
-	public boolean cancelarAula(Aula aula) {
-		return true;
+	public void cancelarAula(Aula aula) {
+		aulasAgendadas.remove(aula);
 	};
 	
 	public String toString() {
