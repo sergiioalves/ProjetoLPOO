@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import classesModelo.Aluno;
 import classesModelo.Aula;
+import classesModelo.Colaborador;
 import classesModelo.Instrutor;
 import classesModelo.Pessoa;
 
@@ -170,6 +171,7 @@ public class Menu {
 				    if (aulasAgendadas.isEmpty()) {
 				        System.out.println("Nenhuma aula agendada.");
 				    } else {
+				    	try {
 				        System.out.println("Escolha o número da aula para cancelar: ");
 				        int numeroAulaCancelar = scanner.nextInt();
 				        if (numeroAulaCancelar >= 0 && numeroAulaCancelar < aulasAgendadas.size()) {
@@ -177,14 +179,77 @@ public class Menu {
 				            alunoSelecionadoCancelar.cancelarAula(aulaCancelar);
 				            System.out.println("Aula cancelada com sucesso.");
 				        } else {
-				            System.out.println("Número de aula inválido. Tente novamente.");
+				            throw new numeroAulaInvalidoException();
 				        }
+				    }catch (AulanaoAgendadaException e) {
+				    	System.out.println("Erro: " + e.getMessage());
 				    }
+				    catch (numeroAulaInvalidoException e) {
+				    	System.out.println("Erro: " + e.getMessage());
+				    }
+			}
+		
 				    break;
 				    
 				case 6:
+					System.out.println("Digite o nome do funcionário a ser cadastrado: ");
+					String nomeFunc = scanner.next();
+					System.out.println("Digite a idade do funcionário a ser cadastrado: ");
+					int idadeFunc = scanner.nextInt();
+					System.out.println("Digite o gênero do funcionário a ser cadastrado: ");
+					char generoFunc = scanner.next().charAt(0);
+					System.out.println("Para continuar o cadastro, escolha uma das opções");
+					System.out.println("1 - Cadastrar instrutor: ");
+					System.out.println("2 - Cadastrar colaborador: ");
+					int opcad = scanner.nextInt();
+					if (opcad == 1) {
+						System.out.println("Digite a especialização do novo instrutor: ");
+						String espcInst = scanner.next();
+						System.out.println("Digite o codigo de identificação do novo instrutor: ");
+						String idInst = scanner.next();
+						Instrutor novoInstrutor = new Instrutor(nomeFunc, idadeFunc, generoFunc, espcInst, idInst);
+						funcionarios.add(novoInstrutor);
+						System.out.println("Instrutor cadastrado com sucesso!");
+					}
+					if (opcad == 2) {
+						System.out.println("Digite a função do novo colaborador: ");
+						String funcColab = scanner.next();
+						System.out.println("Digite o codigo de identificação do novo colaborador: ");
+						String idColab = scanner.next();
+						Colaborador novoColaborador = new Colaborador(nomeFunc, idadeFunc, generoFunc, funcColab, idColab);
+						funcionarios.add(novoColaborador);
+						System.out.println("Colaborador cadastrado com sucesso!");
+					}
 					
-                    
+				case 7:
+					System.out.println("Digite o nome do funcionário que deseja buscar: ");
+					String nomeFuncBusca = scanner.next();
+					boolean funcEncontrado = false;
+					for (Pessoa p:funcionarios) {
+						if (p.getNome().equalsIgnoreCase(nomeFuncBusca)) {
+							System.out.println(p);
+							funcEncontrado = true;
+						}
+					}
+					if (funcEncontrado==false) {
+						System.out.println("Funcionario não encontrado.");
+					}
+				
+				case 10:
+				    System.out.println("Lista de alunos:");
+				    for (int i = 0; i < alunos.size(); i++) {
+				        System.out.println(i + ". " + alunos.get(i).getNome());
+				    }
+				    System.out.println("Escolha o número do aluno para registrar o pagamento da mensalidade: ");
+				    int numeroAlunoPagmto = scanner.nextInt();
+
+				    if (numeroAlunoPagmto >= 0 && numeroAlunoPagmto < alunos.size()) {
+				        Aluno alunoSelecionadoPagamento = alunos.get(numeroAlunoPagmto);
+				        alunoSelecionadoPagamento.registrar_Pagamento();
+				    } else {
+				        System.out.println("Número de aluno inválido. Tente novamente.");
+				    }
+				    break;
                     
 				case 0:
 					System.out.println("Saindo do programa...");

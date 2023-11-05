@@ -21,4 +21,8 @@ public class Colaborador extends Pessoa{
 	public void setFuncao(String funcao) {
 		this.funcao = funcao;
 	}
+	
+	public String toString() {
+		return "Colaborador(a): " + nome + ", " + "Id: " + id_Colaborador + ", " + "especialização: " + funcao;
+	}
 }

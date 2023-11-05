@@ -21,4 +21,8 @@ public class Instrutor extends Pessoa{
 	public void setEspecializacao(String especializacao) {
 		this.especializacao = especializacao;
 	}
+	
+	public String toString() {
+		return "Instrutor(a): " + nome + ", " + "Id: " + id_Instrutor + ", " + "especialização: " + especializacao;
+	}
 }

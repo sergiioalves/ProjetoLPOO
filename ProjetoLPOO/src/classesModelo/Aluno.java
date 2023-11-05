@@ -2,7 +2,9 @@ package classesModelo;
 
 import java.util.List;
 
-public class Aluno extends Pessoa{
+import classesUI.AulanaoAgendadaException;
+
+public class Aluno extends Pessoa implements Pagamento{
 	private String planoAssinatura;
 	private String id_Aluno;
 	private List<Aula> aulasAgendadas;
@@ -41,12 +43,19 @@ public class Aluno extends Pessoa{
 //	};
 	
 
-	public void cancelarAula(Aula aula) {
-		aulasAgendadas.remove(aula);
+	public void cancelarAula(Aula aula) throws AulanaoAgendadaException{
+		 if (!aulasAgendadas.contains(aula)) {
+		        throw new AulanaoAgendadaException();
+		    }
+		    aulasAgendadas.remove(aula);
 	};
 	
 	public String toString() {
 		return "Aluno(a): " + nome + "," + " Id: " + id_Aluno;
 	}
+
+	public void registrar_Pagamento() {
+        System.out.println("Pagamento da mensalidade registrado para o aluno: " + nome);
+    }
 
 }
