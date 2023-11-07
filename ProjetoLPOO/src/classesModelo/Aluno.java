@@ -8,12 +8,18 @@ public class Aluno extends Pessoa implements Pagamento{
 	private String planoAssinatura;
 	private String id_Aluno;
 	private List<Aula> aulasAgendadas;
+	private boolean mensalidadePaga;
+	private double valorMensalidade;
+	private double valorPago;
 	
-	public Aluno (String nome, int idade, char genero, String planoAssinatura, String id_Aluno, List<Aula> aulasAgendadas) {
+	public Aluno (String nome, int idade, char genero, String planoAssinatura, String id_Aluno, List<Aula> aulasAgendadas, boolean mensalidadePaga, Double valorMensalidade, Double valorPago) {
 		super(nome,idade,genero);
 		this.planoAssinatura = planoAssinatura;
 		this.id_Aluno = id_Aluno;
 		this.aulasAgendadas = aulasAgendadas;
+		this.mensalidadePaga = false;
+		this.valorMensalidade = valorMensalidade;
+		this.valorPago = 0.0;
 	}
 
 	public String getPlanoAssinatura() {
@@ -36,12 +42,10 @@ public class Aluno extends Pessoa implements Pagamento{
     public void agendarAula(Aula aula) {
         aulasAgendadas.add(aula);
     }
-
-//	public boolean atividadesemvagas(Aula aula) {
-//		// TODO Auto-generated method stub
-//		return true;
-//	};
-	
+    
+    public Double getValorPago() {
+		return valorPago;
+	}
 
 	public void cancelarAula(Aula aula) throws AulanaoAgendadaException{
 		 if (!aulasAgendadas.contains(aula)) {
@@ -55,7 +59,13 @@ public class Aluno extends Pessoa implements Pagamento{
 	}
 
 	public void registrar_Pagamento() {
-        System.out.println("Pagamento da mensalidade registrado para o aluno: " + nome);
+		if (mensalidadePaga) {
+			System.out.println("A mensalidade já foi paga por o aluno: " + nome);
+		}else {
+			mensalidadePaga = true;
+			valorPago += valorMensalidade;
+			System.out.println("Pagamento da mensalidade registrado para o aluno: " + nome);
+		}
     }
 
 }

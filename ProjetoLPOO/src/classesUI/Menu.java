@@ -47,8 +47,12 @@ public class Menu {
 					System.out.println("Digite o id (codigo de identificação) do novo aluno: ");
 					String id_Aluno = scanner.next();
 					List<Aula> aulas_Agendadas = null;
+					boolean mensalidadePaga = false;
+					Double valorPago = 0.0;
+					System.out.println("Digite o valor da mensalidade do novo aluno: ");
+					Double valorMensalidade = scanner.nextDouble();
 				
-					Aluno aluno = new Aluno (nome, idade, genero, planoAssinatura, id_Aluno, aulas_Agendadas);
+					Aluno aluno = new Aluno (nome, idade, genero, planoAssinatura, id_Aluno, aulas_Agendadas, mensalidadePaga, valorMensalidade, valorPago);
 					alunos.add(aluno);
 					System.out.print("Aluno cadastrado com sucesso! ");
 			
@@ -83,55 +87,7 @@ public class Menu {
 					String id_Instrutor = scanner.next();
 					Instrutor instrutor = new Instrutor (nomeinst, generoinst, generoinst, especializacao, id_Instrutor);
 					Aula aula = new Aula (tipo, data, horario, instrutor);
-//					int limiteParticipantes = scanner.nextInt();
-//					System.out.println("Descreva o tipo de aula (Ex: ginástica, musculação, etc.)");
-//					String tipo = scanner.next();
-//					System.out.println("Digite a data desejada.)");
-//					String data = scanner.next();
-//					System.out.println("Digite o horário desejado.)");
-//					String horario = scanner.next();
-//					System.out.println("Digite os atributos do instrutor que irá ministrar a aula.)");
-//					String nomeinst = scanner.next();
-//					int idadeinst =  scanner.nextInt();
-//					char generoinst = scanner.next().charAt(0);
-//					String especializacao = scanner.next();
-//					String id_Instrutor = scanner.next();
-//					Instrutor instrutor = new Instrutor (nomeinst, generoinst, generoinst, especializacao, id_Instrutor);
-//					boolean semvagas = false;
-//					if (tipo == "musculação") {
-//						Aula aula1 = new Aula (tipo, data, horario, instrutor);
-//						for (Aula aula:aulas) {
-//							if (aula.getData().equals(aula1.getData()) &&
-//								aula.getHorario().equals(aula1.getHorario()) &&
-//								aula.getInstrutor().equals(aula1.getInstrutor()))
-//								{
-//								semvagas = true;
-//								if (semvagas = true) {
-//									aula1.atividadesemvagas();
-//								}
-//							}else {
-//								
-//							}
-//						}
-//					}
-//					System.out.println("Digite o nome do aluno que deseja agendar a aula: ");
-//					String nomeAluno = scanner.next();
-//					for (Aluno al:alunos) {
-//						if (al.getNome().equalsIgnoreCase(nomeAluno)) {
-//							  al.agendarAula();
-//						}
-//					}
-//					if (tipo == "ginástica") {
-//						//if numparticipantes < 10:
-//							Aula aula = new Aula (tipo, data, horario, instrutor);
-//							boolean agendarAula = aluno.agendarAula(aula);
-//					}
-//					if (tipo == "dança") {
-//						//if numparticipantes < 10:
-//							Aula aula = new Aula (tipo, data, horario, instrutor);
-//							boolean agendarAula = aluno.agendarAula(aula);
-//					}	
-//					
+
 				case 4:
 					System.out.println("Lista de alunos:");
                     for (int i = 0; i < alunos.size(); i++) {
@@ -234,6 +190,38 @@ public class Menu {
 					if (funcEncontrado==false) {
 						System.out.println("Funcionario não encontrado.");
 					}
+					
+				case 8:
+					System.out.println("Digite o nome do funcionário que deseja buscar: ");
+					String nomeAluRmv = scanner.next();
+					boolean alunoEncontrado = false;
+					for (Aluno a:alunos) {
+						if (a.getNome().equalsIgnoreCase(nomeAluRmv)) {
+							System.out.println("Aluno " + a + " removido");
+							alunoEncontrado = true;
+							alunos.remove(a);
+							System.out.println("Aluno removido do sistema.");
+					}
+					if (alunoEncontrado==false) {
+						System.out.println("Aluno não encontrado no sistema.");
+					}
+					}
+					
+				case 9:
+					System.out.println("Digite o nome do funcionário que deseja buscar: ");
+					String nomeFuncRmv = scanner.next();
+					boolean funcRmvEncontrado = false;
+					for (Pessoa f:funcionarios) {
+						if (f.getNome().equalsIgnoreCase(nomeFuncRmv)) {
+							System.out.println("Funcionário " + f + " removido");
+							funcRmvEncontrado = true;
+							funcionarios.remove(f);
+							System.out.println("Funcionário removido do sistema.");
+					}
+					if (funcRmvEncontrado==false) {
+						System.out.println("Funcionário não encontrado no sistema.");
+					}
+					}
 				
 				case 10:
 				    System.out.println("Lista de alunos:");
@@ -246,6 +234,7 @@ public class Menu {
 				    if (numeroAlunoPagmto >= 0 && numeroAlunoPagmto < alunos.size()) {
 				        Aluno alunoSelecionadoPagamento = alunos.get(numeroAlunoPagmto);
 				        alunoSelecionadoPagamento.registrar_Pagamento();
+				        System.out.println("Valor total pago pelo aluno " + alunoSelecionadoPagamento.getNome() + ": " + alunoSelecionadoPagamento.getValorPago());
 				    } else {
 				        System.out.println("Número de aluno inválido. Tente novamente.");
 				    }
@@ -261,5 +250,6 @@ public class Menu {
 			System.err.println(e.getMessage());
 		}
 		
+
 }
 }
