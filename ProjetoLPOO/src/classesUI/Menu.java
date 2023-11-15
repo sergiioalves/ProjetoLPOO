@@ -9,6 +9,7 @@ import classesModelo.Aula;
 import classesModelo.Colaborador;
 import classesModelo.Instrutor;
 import classesModelo.Pessoa;
+import classesModelo.SistemaAcademia;
 
 public class Menu {
 		
@@ -17,6 +18,7 @@ public class Menu {
 		ArrayList<Aula> aulas = new ArrayList<>();
 		ArrayList<Aluno> alunos = new ArrayList<>();
 		ArrayList<Pessoa> funcionarios = new ArrayList<>();
+		SistemaAcademia sistema = new SistemaAcademia ();
 		int opc = 0;
 		
 		do {
@@ -32,6 +34,7 @@ public class Menu {
 				System.out.println("8 - Remover aluno do sistema (buscar por ID).");
 				System.out.println("9 - Remover funcionário do sistema (buscar por ID).");
 				System.out.println("10 - Registrar pagamento de mensalidade de aluno.");
+				System.out.println("11 - Exibir estatísticas gerais do sistema.");
 				System.out.println("0 - Sair.");
 				opc = scanner.nextInt();
 				scanner.nextLine();
@@ -281,6 +284,9 @@ public class Menu {
 						}
 				    
 						break;
+						
+					case 11:
+						Estatisticas estatissticasSyst = new EstatisticasSistema(sistema);
                     
 					case 0:
 						System.out.println("Saindo do programa...");
