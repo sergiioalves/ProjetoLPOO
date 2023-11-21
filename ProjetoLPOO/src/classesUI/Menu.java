@@ -9,7 +9,6 @@ import classesModelo.Aula;
 import classesModelo.Colaborador;
 import classesModelo.Instrutor;
 import classesModelo.Pessoa;
-import classesModelo.SistemaAcademia;
 
 public class Menu {
 		
@@ -18,13 +17,12 @@ public class Menu {
 		ArrayList<Aula> aulas = new ArrayList<>();
 		ArrayList<Aluno> alunos = new ArrayList<>();
 		ArrayList<Pessoa> funcionarios = new ArrayList<>();
-		SistemaAcademia sistema = new SistemaAcademia ();
 		int opc = 0;
 		
 		do {
 			try {
-				System.out.println("Digite a opção desejada: ");
-				System.out.println("1 - Fazer matrícula de aluno.");
+				System.out.println("Digite a opcao desejada: ");
+				System.out.println("1 - Fazer matricula de aluno.");
 				System.out.println("2 - Buscar Aluno (por ID).");
 				System.out.println("3 - Cadastrar uma aula.");
 				System.out.println("4 - Agendar aula.");
@@ -34,7 +32,6 @@ public class Menu {
 				System.out.println("8 - Remover aluno do sistema (buscar por ID).");
 				System.out.println("9 - Remover funcionário do sistema (buscar por ID).");
 				System.out.println("10 - Registrar pagamento de mensalidade de aluno.");
-				System.out.println("11 - Exibir estatísticas gerais do sistema.");
 				System.out.println("0 - Sair.");
 				opc = scanner.nextInt();
 				scanner.nextLine();
@@ -45,11 +42,11 @@ public class Menu {
 						String nome = scanner.next();
 						System.out.println("Digite a idade da pessoa: ");
 						int idade = scanner.nextInt();
-						System.out.println("Digite o gênero da pessoa: ");
+						System.out.println("Digite o genero da pessoa: ");
 						char genero = scanner.next().charAt(0);
 						System.out.println("Digite o plano de assinatura desejado: ");
 						String planoAssinatura = scanner.next();
-						System.out.println("Digite o id (codigo de identificação) do novo aluno: ");
+						System.out.println("Digite o id (codigo de identificacao) do novo aluno: ");
 						String id_Aluno = scanner.next();
 						List<Aula> aulas_Agendadas = null;
 						boolean mensalidadePaga = false;
@@ -72,7 +69,7 @@ public class Menu {
 								System.out.println(a);
 								alunoEcontrado = true;
 							}else {
-								System.out.println("Aluno não encontrado no sistema.");
+								System.out.println("Aluno nao encontrado no sistema.");
 							}
 						}
 				
@@ -80,7 +77,7 @@ public class Menu {
 					
 					case 3:
 						int limiteParticipantes = scanner.nextInt();
-						System.out.println("Descreva o tipo de aula (Ex: ginástica, musculação, etc.)");
+						System.out.println("Descreva o tipo de aula (Ex: ginastica, musculação, etc.)");
 						String tipo = scanner.next();
 						System.out.println("Digite a data desejada.)");
 						String data = scanner.next();
@@ -230,7 +227,7 @@ public class Menu {
 								alunos.remove(a);
 								System.out.println("Aluno removido do sistema.");
 							}else {
-								System.out.println("Aluno não encontrado no sistema.");
+								System.out.println("Aluno nao encontrado no sistema.");
 							}
 						}
 					
@@ -247,22 +244,22 @@ public class Menu {
 									System.out.println("Funcionário " + f + " removido");
 									funcRmvEncontrado = true;
 									funcionarios.remove(f);
-									System.out.println("Funcionário removido do sistema.");
+									System.out.println("Funcionario removido do sistema.");
 								}
 							}
 							
 							if (f instanceof Colaborador) {
 								Colaborador colab = (Colaborador) f;
 								if (colab.getIdColab().equalsIgnoreCase(idFuncRmv)) {
-									System.out.println("Funcionário " + f + " removido");
+									System.out.println("Funcionario " + f + " removido");
 									funcRmvEncontrado = true;
 									funcionarios.remove(f);
-									System.out.println("Funcionário removido do sistema.");
+									System.out.println("Funcionario removido do sistema.");
 								}
 							}
 							}
 						if (funcRmvEncontrado==false) {
-							System.out.println("Funcionário não encontrado no sistema.");
+							System.out.println("Funcionario nao encontrado no sistema.");
 						}
 					
 						break;
@@ -280,19 +277,16 @@ public class Menu {
 							alunoSelecionadoPagamento.registrar_Pagamento();
 							System.out.println("Valor total pago pelo aluno " + alunoSelecionadoPagamento.getNome() + ": " + alunoSelecionadoPagamento.getValorPago());
 						} else {
-							System.out.println("Número de aluno inválido. Tente novamente.");
+							System.out.println("Numero de aluno inválido. Tente novamente.");
 						}
 				    
 						break;
 						
-					case 11:
-						Estatisticas estatissticasSyst = new EstatisticasSistema(sistema);
-                    
 					case 0:
 						System.out.println("Saindo do programa...");
 						return;
 					default:
-						throw new OpcInvalidaException ("Opção inválida. Tente novamente.");
+						throw new OpcInvalidaException ("Opcao invalida. Tente novamente.");
 							
 				}} catch (OpcInvalidaException e) {
 					System.err.println(e.getMessage());
