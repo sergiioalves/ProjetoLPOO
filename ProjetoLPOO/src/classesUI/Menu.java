@@ -1,6 +1,7 @@
 package classesUI;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,28 +38,35 @@ public class Menu {
 				scanner.nextLine();
 		
 				switch(opc){
-					case 1: 
-						System.out.println("Digite o nome da pessoa: ");
-						String nome = scanner.next();
-						System.out.println("Digite a idade da pessoa: ");
-						int idade = scanner.nextInt();
-						System.out.println("Digite o genero da pessoa: ");
-						char genero = scanner.next().charAt(0);
-						System.out.println("Digite o plano de assinatura desejado: ");
-						String planoAssinatura = scanner.next();
-						System.out.println("Digite o id (codigo de identificacao) do novo aluno: ");
-						String id_Aluno = scanner.next();
-						List<Aula> aulas_Agendadas = null;
-						boolean mensalidadePaga = false;
-						Double valorPago = 0.0;
-						System.out.println("Digite o valor da mensalidade do novo aluno: ");
-						Double valorMensalidade = scanner.nextDouble();
-				
-						Aluno aluno = new Aluno (nome, idade, genero, planoAssinatura, id_Aluno, aulas_Agendadas, mensalidadePaga, valorMensalidade, valorPago);
-						alunos.add(aluno);
-						System.out.print("Aluno cadastrado com sucesso! ");
-					
-						break;
+				case 1:
+				    try {
+				        System.out.println("Digite o nome da pessoa: ");
+				        String nome = scanner.next();
+				        System.out.println("Digite a idade da pessoa: ");
+				        int idade = scanner.nextInt();
+				        System.out.println("Digite o genero da pessoa: ");
+				        char genero = scanner.next().charAt(0);
+				        System.out.println("Digite o plano de assinatura desejado: ");
+				        String planoAssinatura = scanner.next();
+				        System.out.println("Digite o id (codigo de identificacao) do novo aluno: ");
+				        String id_Aluno = scanner.next();
+				        List<Aula> aulas_Agendadas = null;
+				        boolean mensalidadePaga = false;
+				        Double valorPago = 0.0;
+				        System.out.println("Digite o valor da mensalidade do novo aluno: ");
+				        Double valorMensalidade = scanner.nextDouble();
+
+				        Aluno aluno = new Aluno(nome, idade, genero, planoAssinatura, id_Aluno, aulas_Agendadas, mensalidadePaga, valorMensalidade, valorPago);
+				        alunos.add(aluno);
+				        System.out.print("Aluno cadastrado com sucesso! ");
+				    } catch (InputMismatchException e) {
+				        System.out.println("Erro na entrada de dados. Certifique-se de inserir dados validos.");
+				        scanner.nextLine(); 
+				    } catch (Exception e) {
+				        System.out.println("Erro ao cadastrar aluno: " + e.getMessage());
+				    }
+				    break;
+
 				
 					case 2:
 						boolean alunoEcontrado = false;
